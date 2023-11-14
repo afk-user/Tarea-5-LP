@@ -2,9 +2,9 @@
 cerradura(1,4,5,1,0).
 
 % Regla que evalua el contador de coincidencias
-eval(E,R):-E=0,!,R="Contraseña descubierta";
-    E<1,!,R="Cerca";
-	E>=1,R="Lejos".
+eval(E,R):-E=0,!,R="Contraseña descubierta".
+eval(E,R):-E<1,!,R="Cerca".
+eval(E,R):-E>=1,R="Lejos".
 
 % Regla que evalua las coincidencias y retorna una respuesta en palabra
 verificar(X1,X2,X3,X4,X5,R):-

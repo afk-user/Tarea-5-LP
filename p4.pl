@@ -34,15 +34,18 @@ largo([_|Cola],N):-
 
 % Regla que define cual es el nodo anterior a otro nodo (funciona de forma recursiva)
 anterior(Curr,Old,New):-
-    member(Curr,Old),!,New=Old;
+    member(Curr,Old),
+    New=Old,!.
+anterior(Curr,Old,New):-
     sigue(Prev,Curr),
     append(Old,[Curr],Temp),
-    anterior(Prev,Temp,New).
+    anterior(Prev,Temp,New),!.
 
 % Regla que define el algoritmo para saber si un nodo está en la rama principal
 principal(Persona,Respuesta):-
     anterior(Persona,[],[_|Path]),
     print(Path),
     largo(Path,L),
-    8>L,!,Respuesta="Es de la rama principal";
-    Respuesta="No es de la rama principal".
+    8>L, Respuesta="Es de la rama principal",!.
+principal(_,Respuesta):-
+    Respuesta="No es de la rama principal",!.
